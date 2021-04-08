@@ -26,6 +26,8 @@ By the end of this step, you now have a shared repository, under version control
 
 ## §2. Collaborative Workflows in Git
 
+*Working through this mini activity with your group is optional but strongly recommended.*
+
 ### §2.1 Make a Grid
 
 It's possible that your repository already has a top-level file named `README.md`. If not, a new group member (not the one who created the repo) should create one. Then, this group member should create a code block in the file `README.md` containing a 3x3 grid of dots, like the below: 
