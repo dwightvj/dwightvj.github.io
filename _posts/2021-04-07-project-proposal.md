@@ -116,7 +116,7 @@ Please ensure that all group members participate in writing the proposal. In par
 You are required to include sections in your proposal that address the following topics. Feel free to include additional sections as needed. 
 
 1. **Abstract**: In 2-4 sentences, describe what problem the project addresses, and the overall approach you will use to solve that problem. 
-2. **Planned Deliverables**: Concisely what you are going to create and what capabilities it will have. Are you making a webapp? A Python package for others to use? Code that creates a novel data set? Etc. Please consider two scenarios: 
+2. **Planned Deliverables**: Concisely state what you are going to create and what capabilities it will have. Are you making a webapp? A Python package for others to use? Code that creates a novel data set? Etc. Please consider two scenarios: 
     - "Full success." What will your deliverable be if everything works out for you exactly as you plan?
     - "Partial success." What useful deliverable will you be able to offer even if things don't 100% work out? For example, maybe you aren't able to get that webapp together, but you can still create a code repository that showcases the machine learning pipeline needed to use to support the app. Have a contingency plan! 
 3. **Resources Required**: Do you need certain data sets? Do you know whether those data sets exist? Are they freely accessible? You should do at least a small amount of research for this part, in which you convince me that there is good reason to believe that you will be able to access or obtain the resources needed for your proposal. 
