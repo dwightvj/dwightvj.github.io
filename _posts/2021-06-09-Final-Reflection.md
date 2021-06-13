@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Project Relfection Post
+title: Final Project Reflection Post
 ---
 
 This quarter my Team (Puppy Party) worked on creating an interactive [webapp](https://pic16b-dog-detector.herokuapp.com/) to allow users to predict a dog's breed based on a picture. We wanted this web app to address the problem many cannine-lovers have: recognizing niche dog breeds. On top of our dog-breed image classifier we also created a feature on our web app to allow users to discover the best dog breeds for themselves
@@ -31,16 +31,16 @@ Our model also includes an online learning feature. The model can take feedback 
 
 ## 5. What are three things you learned from the experience of completing your project? Data analysis techniques? Python packages? Git + GitHub? Etc?
 
-This project made me familiar with using streamlit, Tensorflow, and model deployment as a whole. 
+This project made me familiar with using streamlit, tensorflow, and model deployment as a whole. 
 
 Streamlit is an open-source library used for front-end web development. Finetuned for Python projects, streamlit makes front-end developement more streamlined (hence the name haha) and allowed me to focus on making my team's model compatible without having to worry too much about aesthetics. By using streamlit my team and I were able to focus on deployment and our back-end rather than getting stuck on making our web app look pretty.
 
-Deploying Tensorflow ended up being extremely challenging. Heroku (a platform as a service) is what we used to deploy our project to the cloud. However, Heroku is only compatible with tensorflow 2.0.0. As a result when building my model and deloying it I had to be acutely aware that I had to work within a tensorflow 2.0.0 virtual environment and ensure all tensorflow dependencies were not too modern (i.e. greater than version 2.0.0).
+Deploying tensorflow ended up being extremely challenging. Heroku (a platform as a service) is what we used to deploy our project to the cloud. However, Heroku is only compatible with tensorflow 2.0.0. As a result when building my model and deloying it I had to be acutely aware that I had to work within a tensorflow 2.0.0 virtual environment and ensure all tensorflow dependencies were not too modern (i.e. greater than version 2.0.0).
 
 Lastly, the most important thing I learned when completing this project was how to deploy a model efficiently. During my first few attempts at predicting a breed based on image I found that it took roughly 20-30 seconds to load, compile, and predict. Eventually I discovered that Heroku restarts our team's application once every 24 hours. As a result the first interaction after "heroku restarts our application" runs the content outside of main. However, every subseuent interaction only runs main(). As a result, upon loading my model outside of main() I found that I was able to predict dog breed much more quickly, since loading the model was among the most time-consuming processes in our web application.
 
 ## 6. How will your experience completing this project will help you in your future studies or career? Please be as specific as possible.
-Having gotten a taste of using tensorflow on a completely foreign dataset I want to now embark on bigger and bolder projects. More importantly, I really enjoyed working in a collaborative group where we were able to each contribute equally to create something that we are proud of. From my experience completing this project, I've come to realize I enjoy cross-collaboration and bouncing off ideas. Never in a million years would I have thought of creating a dog-breed recommender system. However, Charisse and Britney helped us envision this idea by finding the necessary data and using unique packages to see it through.
+Having gotten a taste of using tensorflow on a completely foreign dataset I want to now embark on bigger and bolder projects. More importantly, I really enjoyed working in a collaborative group where we were able to each contribute equally to create something that we are proud of. From my experience completing this project, I've come to realize I enjoy cross-collaboration and bouncing off ideas. Never in a million years would I have thought of creating a dog-breed recommender system on top of our original work. However, Charisse and Britney helped us envision this idea by finding the necessary data and using unique packages to see it through.
 
-I feel like I have become a more efficient communicator through this process and realize I want to work in the industry as a data scientist who is responsible for creating models to helped extract new insights. Additionally, this project definitely made me realize the value of data cleaning and data analysis. Without taking the time to start from the basics with clean data, it would have been near impossible to create a workable model that is compatible with the user-input.
+I feel like I have become a more efficient communicator through this process and realize I want to work in the industry as a data scientist who is responsible for creating models to helped extract new insights. Additionally, this project definitely made me realize the value of data cleaning and EDA. Without taking the time to start from the basics with clean data, it would have been near impossible to create a workable model that is compatible with the user-input.
 
