@@ -109,6 +109,20 @@ Server running... press ctrl-c to stop.
 
 Navigate to `http://127.0.0.1:4000/` in your browser. You should see an exact copy of the blog! This copy isn't online; it's running directly on your computer. This allows you to (a) preview changes more rapidly than you can by editing on GitHub and (b) work on your blog using a text editor, which is usually more comfortable than the file modification interface on GitHub. 
 
+**Note**: You may experience an error message telling you that `webrick` is missing. If you do, try running the following command in your terminal: 
+
+```bash
+bundle add webrick
+```
+
+Then, try 
+
+```bash
+jekyll serve
+```
+
+again. 
+
 ## 6. Add Your Name
 
 Still on GitHub, find the file `_config.yml`. Click the pencil icon to edit the file. Change the `name` and `description` fields. Anything is fine! You're encouraged but not required to use your real name. 
