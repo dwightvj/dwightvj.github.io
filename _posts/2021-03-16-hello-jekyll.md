@@ -189,64 +189,8 @@ To create this example, I first ran the code in a Jupyter Notebook, and added th
 ```
 immediately beneath the code block. 
 
-## 10. Peer Feedback 
 
-One important requirement for your homework assignments is to clearly state multiple moments in which you (a) learned something useful from your peer feedback or (b) contributed an important insight during peer feedback. This website template includes two special CSS classes that you should use for this purpose. 
-
-To indicate a topic in which you learned something new, use the `got-help` class like this: 
-
-```html
-{::options parse_block_html="true" /}
-<div class="got-help">
-I learned something really cool from my peer feedback! 
-</div>
-{::options parse_block_html="false" /}
-```
-
-Jekyll will process this code block like this: 
-
-{::options parse_block_html="true" /}
-<div class="got-help">
-I learned something really cool from my peer feedback! 
-</div>
-{::options parse_block_html="false" /}
-
-You can also use the class `gave-help` to indicate places in which you felt that your comments were able to significantly improve the code of your peers. 
-
-```html
-{::options parse_block_html="true" /}
-<div class="gave-help">
-I gave one of my peers a cool suggestion! 
-</div>
-{::options parse_block_html="false" /}
-```
-{::options parse_block_html="true" /}
-<div class="gave-help">
-I gave one of my peers a cool suggestion! 
-</div>
-{::options parse_block_html="false" /}
-
-You are welcome (and indeed encouraged) to place code inside these blocks:
-
-{::options parse_block_html="true" /}
-<div class="got-help">
-In my first draft of my code, I computed the logistic sigmoid function on a list of values using: 
-
-```python
-import math
-def sigmoid(X):
-    return [1 / (1 + math.exp(-x)) for x in X]
-```
-One of my peer reviewers pointed out to me that my code would be faster on large data sets and be more compatable with scientific Python libraries if I assumed that the input and output were Numpy arrays. 
-```python
-import numpy as np
-def sigmoid(X):
-    return 1 / (1 + np.exp(-X))
-``` 
-</div>
-{::options parse_block_html="false" /}
-
-## 11. Push! 
+## 10. Push! 
 
 Once you've made all these additions to your test post, publish the result. To do so, make sure you have committed all your changes in GitHub Desktop, including any files you may have added. Once you've done so, push! In a few minutes, you should see your new post on your website. 
 
