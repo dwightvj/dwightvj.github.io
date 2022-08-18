@@ -1,3 +1,9 @@
-# PIC16B Demonstration Website
+# dylantao.github.io
 
-This repository hosts a demonstration website for use of students in PIC16B, a course in computational science with Python taught at UCLA. It is lightly modified from Barry Clark's excellent [Jekyll Now](https://www.jekyllnow.com/). 
+My personal website for portfolio showcasing.
+
+Here is the [link](https://dylantao.github.io/).
+
+Reference:
+- Design: [TemplateMo](https://templatemo.com/), [Jekyll Themes](https://jekyllthemes.io/)
+- Images: [Unsplash](http://unsplash.com/)
