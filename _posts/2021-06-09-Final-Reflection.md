@@ -3,9 +3,7 @@ layout: post
 title: TEST
 ---
 
-This quarter my Team (Puppy Party) worked on creating an interactive [webapp](https://pic16b-dog-detector.herokuapp.com/) to allow users to predict a dog's breed based on a picture. We wanted this web app to address the problem many cannine-lovers have: recognizing niche dog breeds. On top of our dog-breed image classifier we also created a feature on our web app to allow users to discover the best dog breeds for themselves
-
-My team and I wrote the responses to questions 1-4 together. I wrote the responses for questions 5-6 by myself.
+TEST TEST TEST 
 
 ## 1. Overall, what did you achieve in your project?
 
