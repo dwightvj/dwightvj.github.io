@@ -1,18 +1,397 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adhvaith Vijay | Product-Focused Data Scientist</title>
+    <meta name="description" content="Adhvaith Vijay is a data scientist working across battery reliability, retail shopper analytics, credit and fraud risk, and aerospace. Data Scientist at Tesla.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f8f8fb;
+            --surface: #ffffff;
+            --text: #181a24;
+            --muted: #5b5e6e;
+            --line: #e3e4ec;
+            --accent: #4338ca;
+            --accent-soft: #ebeafd;
+            --chip: #eeeef5;
+        }
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #111218;
+                --surface: #181a22;
+                --text: #ebebf2;
+                --muted: #a3a6ad;
+                --line: #2a2c3a;
+                --accent: #a5b4fc;
+                --accent-soft: #1f2142;
+                --chip: #1f212c;
+            }
+        }
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
+        * { box-sizing: border-box; }
 
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 16px/1.6 "Inter", system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        nav.top {
+            position: sticky; top: 0; z-index: 10;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+        nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+        nav.top .name { font-weight: 600; color: var(--text); }
+        nav.top ul { list-style: none; display: flex; gap: 22px; margin: 0; padding: 0; font-size: 14px; }
+        nav.top ul a { color: var(--muted); }
+        nav.top ul a:hover { color: var(--text); text-decoration: none; }
+
+        /* Hero */
+        .hero { padding: 88px 0 56px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+        .headshot { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; object-position: 50% 35%;
+            border: 4px solid var(--surface); box-shadow: 0 6px 24px rgba(0,0,0,.12); }
+        .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+        h1 {
+            font-family: "Newsreader", Georgia, serif; font-weight: 600;
+            font-size: clamp(36px, 5.5vw, 56px); line-height: 1.08; letter-spacing: -.01em;
+            margin: 14px 0 20px; max-width: 18ch;
+        }
+        .tagline { font-size: 22px; font-weight: 600; color: var(--accent); margin: 0 0 18px; }
+        .lede { font-size: 19px; color: var(--muted); max-width: 62ch; margin: 0 0 18px; }
+        .lede + .actions { margin-top: 10px; }
+        .lede strong { color: var(--text); font-weight: 600; }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; border-radius: 999px; font-weight: 500; font-size: 15px;
+            border: 1px solid var(--line); color: var(--text); background: var(--surface);
+        }
+        .btn:hover { text-decoration: none; border-color: var(--muted); }
+        .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+        /* Sections */
+        section { padding: 56px 0; border-top: 1px solid var(--line); }
+        h2 {
+            font-family: "Newsreader", Georgia, serif; font-weight: 600;
+            font-size: 30px; margin: 0 0 8px; letter-spacing: -.005em;
+        }
+        .section-sub { color: var(--muted); margin: 0 0 32px; max-width: 64ch; }
+
+        /* Domains */
+        .domains { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+        .domain {
+            background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+        }
+        .domain .icon { font-size: 22px; line-height: 1; }
+        .domain h3 { font-size: 16px; margin: 12px 0 6px; }
+        .domain p { margin: 0; font-size: 14.5px; color: var(--muted); }
+        .domain .where { margin-top: 12px; font-size: 13px; font-weight: 500; color: var(--accent); }
+
+        /* Experience timeline */
+        .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+        .timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+        .stop { position: relative; padding: 0 0 28px 36px; }
+        .stop:last-child { padding-bottom: 0; }
+        .stop::before {
+            content: ""; position: absolute; left: 0; top: 4px; width: 16px; height: 16px; border-radius: 50%;
+            background: var(--surface); border: 2px solid var(--accent); box-sizing: border-box;
+        }
+        .stop.now::before { background: var(--accent); }
+        .stop .when { color: var(--muted); font-size: 13px; font-weight: 500; letter-spacing: .02em; }
+        .stop h3 { margin: 2px 0 6px; font-size: 17px; }
+        .stop h3 span { color: var(--muted); font-weight: 500; }
+        .stop p { margin: 0 0 10px; font-size: 15px; max-width: 70ch; }
+        .stats { display: flex; flex-wrap: wrap; gap: 8px; }
+        .stats span { background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
+
+        /* Featured */
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .card {
+            display: flex; flex-direction: column;
+            background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px;
+            color: var(--text);
+        }
+        a.card:hover { text-decoration: none; border-color: var(--accent); }
+        .card .tag {
+            align-self: flex-start; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+            background: var(--accent-soft); color: var(--accent); padding: 4px 10px; border-radius: 999px;
+        }
+        .card h3 { font-size: 18px; line-height: 1.35; margin: 14px 0 8px; }
+        .card p { margin: 0 0 14px; font-size: 14.5px; color: var(--muted); flex: 1; }
+        .card .go { font-size: 14px; font-weight: 500; color: var(--accent); }
+
+        /* Skills + awards */
+        .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 20px; }
+        .chip { background: var(--chip); border-radius: 8px; padding: 5px 10px; font-size: 13.5px; }
+        h4 { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+        .awards { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); column-gap: 32px; }
+        .awards li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+        .awards li span { display: block; font-size: 13.5px; color: var(--muted); }
+
+        /* Education */
+        .edu { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .edu div { padding: 18px 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+        .edu b { display: block; }
+        .edu span { color: var(--muted); font-size: 14.5px; }
+
+        /* Contact */
+        .contact { text-align: center; padding: 72px 0; }
+        .contact h2 { font-size: 34px; }
+        .contact p { color: var(--muted); margin: 0 auto 26px; max-width: 52ch; }
+        .contact .actions { justify-content: center; }
+
+        footer { padding: 28px 0 40px; color: var(--muted); font-size: 13px; text-align: center; border-top: 1px solid var(--line); }
+
+        @media (max-width: 720px) {
+            nav.top ul { display: none; }
+            .hero { padding: 56px 0 40px; }
+            .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+            .headshot { width: 140px; height: 140px; order: -1; }
+            .two { grid-template-columns: 1fr; gap: 24px; }
+            .wrap { padding: 0 16px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="top">
+        <div class="wrap">
+            <a class="name" href="#top">Adhvaith Vijay</a>
+            <ul>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#work">Featured work</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="#domains">Domains</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="top">
+        <header class="hero">
+            <div class="wrap hero-grid">
+                <div class="hero-text">
+                <div class="eyebrow">Data Scientist · Tesla</div>
+                <h1>Data science that ships, in whatever domain the problem lives.</h1>
+                <p class="tagline">Product-Focused Data Scientist Turning Models into Decisions</p>
+                <p class="lede">
+                    I build models that make high-stakes decisions in production. At Tesla, <strong>every 4680 battery cell
+                    passes through my computer vision models</strong> as the final quality gate before it goes into a vehicle.
+                    Before that, I worked on customer analytics in retail, credit and fraud risk in banking, and engine
+                    maintenance in aerospace.
+                </p>
+                <div class="actions">
+                    <a class="btn primary" href="https://www.linkedin.com/in/adhvaithvijay/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="btn" href="mailto:adhvaith.vijay@gmail.com">Email</a>
+                </div>
+                </div>
+                <img class="headshot" src="images/headshot.jpg" alt="Adhvaith Vijay" width="240" height="240">
+            </div>
+        </header>
+
+        <section id="experience">
+            <div class="wrap">
+                <h2>Experience</h2>
+                <p class="section-sub">Five roles, one thread: turning data into decisions people act on.</p>
+                <ol class="timeline">
+                    <li class="stop now">
+                        <div class="when">Jul 2024 – Present</div>
+                        <h3>Senior Data Scientist <span>· Tesla</span></h3>
+                        <p>Own quality and risk decisions for Tesla's battery cells: the final quality gate for every 4680 cell, thermal-runaway and warranty-life forecasting, and the dashboards engineers use daily.</p>
+                        <div class="stats"><span>10+ cell programs qualified</span><span>98% recall</span><span>45 engineers, 4 teams</span><span>200+ hrs/week saved</span></div>
+                    </li>
+                    <li class="stop">
+                        <div class="when">Sep 2023 – Jun 2024</div>
+                        <h3>Data Scientist <span>· Standard AI</span></h3>
+                        <p>Ran in-store experiments and, with product and sales, defined the shopper-engagement metrics behind a retail analytics platform.</p>
+                        <div class="stats"><span>+29% conversion</span><span>$600K new contracts</span><span>+15% revenue</span></div>
+                    </li>
+                    <li class="stop">
+                        <div class="when">Jan 2023 – Sep 2023</div>
+                        <h3>Cell Engineer Intern <span>· Tesla</span></h3>
+                        <p>CT-based defect detection and quality dashboards that drove battery cell design changes.</p>
+                        <div class="stats"><span>+40% defect recall</span><span>−20% electrolyte leaks</span></div>
+                    </li>
+                    <li class="stop">
+                        <div class="when">Jun 2022 – Aug 2022</div>
+                        <h3>Summer Associate, Credit Fraud Risk <span>· JPMorgan Chase</span></h3>
+                        <p>Small-business loan default modeling, with risk segments explained for regulators.</p>
+                        <div class="stats"><span>+14% model lift</span></div>
+                    </li>
+                    <li class="stop">
+                        <div class="when">Oct 2019 – May 2020</div>
+                        <h3>Undergraduate Researcher <span>· Rolls-Royce</span></h3>
+                        <p>Engine-maintenance pipeline and R Shiny tool for flagging at-risk aircraft.</p>
+                        <div class="stats"><span>3–4 hrs → under 5 min</span></div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="work">
+            <div class="wrap">
+                <h2>Featured work</h2>
+                <p class="section-sub">Public write-ups of work I've contributed to, plus my patent and papers.</p>
+                <div class="cards">
+                    <a class="card" href="https://www.tesla.com/learn/engineering-tesla-vehicle-batteries-safety-durability-longevity" target="_blank" rel="noopener">
+                        <span class="tag">Battery · Tesla</span>
+                        <h3>Engineering Tesla Vehicle Batteries for Safety, Durability and Longevity</h3>
+                        <p>How Tesla inspects every 4680 cell, using X-ray, CT scanning and AI-based defect detection, and how fleet telemetry feeds back into battery safety. This is the area my models and risk forecasting work in.</p>
+                        <span class="go">Read on tesla.com →</span>
+                    </a>
+                    <a class="card" href="https://standard.ai/why-traditional-heatmaps-are-failing-retailers-and-whats-next/" target="_blank" rel="noopener">
+                        <span class="tag">Retail · Standard AI</span>
+                        <h3>Heatmaps Are Failing Retailers. What's Next?</h3>
+                        <p>Why camera-by-camera heatmaps mislead retailers, and how 3D spatial reconstruction of real shopper paths gives a truer picture of in-store behavior.</p>
+                        <span class="go">Read on standard.ai →</span>
+                    </a>
+                    <a class="card" href="https://patents.google.com/patent/US20240193497A1/en" target="_blank" rel="noopener">
+                        <span class="tag">Patent · Standard AI</span>
+                        <h3>Subject-tracking in a cashier-less store for spatial analytics</h3>
+                        <p>US 2024/0193497 A1. Co-inventor on using subject tracking in autonomous-checkout stores to improve item and shelf placement.</p>
+                        <span class="go">View patent →</span>
+                    </a>
+                    <a class="card" href="research/2601.00928v1.pdf" target="_blank" rel="noopener">
+                        <span class="tag">Paper · Standard AI</span>
+                        <h3>Analyzing the Shopping Journey: Computing Shelf Browsing Visits in a Physical Retail Store</h3>
+                        <p>An algorithm that detects when shoppers browse a shelf from 3D-tracked trajectories, calibrated and tested across two stores. Second author (Morales, Vijay, Zanlungo, Woollard).</p>
+                        <span class="go">Read paper →</span>
+                    </a>
+                    <a class="card" href="research/2401.04051v1.pdf" target="_blank" rel="noopener">
+                        <span class="tag">Paper · UCSD</span>
+                        <h3>Empirical Analysis of Efficient Fine-Tuning Methods for Large Pre-Trained Language Models</h3>
+                        <p>Compares BitFit and adapter modules with full fine-tuning on GLUE tasks. BitFit matches full fine-tuning with far fewer trainable parameters and stays stable with just 30% of the data. Co-author.</p>
+                        <span class="go">Read paper →</span>
+                    </a>
+                    <a class="card" href="https://avaitt.github.io/CMSAC-Soccer-Presentation/soccer.html#1" target="_blank" rel="noopener">
+                        <span class="tag">Research · CMSAC 2021</span>
+                        <h3>An Interpretable Method of Learning Stochastic Game Dynamics</h3>
+                        <p>Models a soccer ball's movement with learned potential functions to simulate matches. Captures large score differentials better than Poisson regression. Presented at the Carnegie Mellon Sports Analytics Conference.</p>
+                        <span class="go">View slides →</span>
+                    </a>
+                    <a class="card" href="https://ucladatares.medium.com/make-a-monet-image-style-transfer-with-cycle-gans-5475dcb525b8" target="_blank" rel="noopener">
+                        <span class="tag">Project · UCLA DataRes</span>
+                        <h3>Make-A-Monet: Image Style Transfer with CycleGANs</h3>
+                        <p>Turns everyday photos into Monet-style paintings with CycleGAN and Pix2Pix, served through an interactive Plotly Dash app.</p>
+                        <span class="go">Read on Medium →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards">
+            <div class="wrap">
+                <h2>Awards</h2>
+                <ul class="awards">
+                        <li>Tesla Spot Option Grant<span>Stock options for outstanding contributions to the company, awarded as the top performer on my team · Oct 2025</span></li>
+                        <li>1st Place, Chevron Track<span>Rice University Datathon · 2021</span></li>
+                        <li>2nd Place, Prosperity Track<span>UCSD DataHacks · 2021</span></li>
+                        <li>1st Place Overall<span>DSS Datathon for Social Good, UC Berkeley · 2020</span></li>
+                        <li>3rd Place, City Search Track<span>TAMU Datathon · 2020</span></li>
+                        <li>2nd Place Overall<span>Retina AI R Datathon · 2020</span></li>
+                        <li>Gandhi Memorial Scholarship<span>San Diego Indian American Society · 2019</span></li>
+                    </ul>
+            </div>
+        </section>
+
+        <section id="domains">
+            <div class="wrap">
+                <h2>Domains</h2>
+                <p class="section-sub">Different industries, the same core work: turn messy, high-volume data into a decision someone can trust.</p>
+                <div class="domains">
+                    <div class="domain">
+                        <div class="icon">🔋</div>
+                        <h3>Lithium-ion battery reliability</h3>
+                        <p>Lab stress testing, CT-scan computer vision, defect detection, and thermal-runaway risk forecasting from fleet telemetry.</p>
+                        <div class="where">Tesla</div>
+                    </div>
+                    <div class="domain">
+                        <div class="icon">🛒</div>
+                        <h3>Shopper behavior analytics</h3>
+                        <p>3D pose data, in-store A/B testing, and layout simulation for physical retail.</p>
+                        <div class="where">Standard AI</div>
+                    </div>
+                    <div class="domain">
+                        <div class="icon">💳</div>
+                        <h3>Credit &amp; fraud risk</h3>
+                        <p>Loan default modeling at scale, with explanations built for regulatory audits.</p>
+                        <div class="where">JPMorgan Chase</div>
+                    </div>
+                    <div class="domain">
+                        <div class="icon">✈️</div>
+                        <h3>Aerospace maintenance</h3>
+                        <p>Engine health algorithms and geospatial tooling for fleet maintenance.</p>
+                        <div class="where">Rolls-Royce</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="wrap">
+                <div>
+                    <h2>Toolkit</h2>
+                    <h4>Languages &amp; ML</h4>
+                    <div class="chips">
+                        <span class="chip">Python</span><span class="chip">R</span><span class="chip">SQL</span><span class="chip">PySpark</span><span class="chip">PyTorch</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span><span class="chip">OpenCV</span>
+                    </div>
+                    <h4>AI &amp; Data Platforms</h4>
+                    <div class="chips">
+                        <span class="chip">RAG Pipelines</span><span class="chip">MCP</span><span class="chip">Databricks Vector Search</span><span class="chip">Snowflake</span><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">MLflow</span>
+                    </div>
+                    <h4>Analytics</h4>
+                    <div class="chips">
+                        <span class="chip">A/B Testing</span><span class="chip">Tableau</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="wrap">
+                <h2>Education</h2>
+                <div class="edu" style="margin-top: 20px;">
+                    <div><b>M.S. Data Science</b><span>University of California, San Diego · 2024</span></div>
+                    <div><b>B.S. Statistics and Data Science</b><span>University of California, Los Angeles · 2022</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="wrap">
+                <h2>Let's talk</h2>
+                <p>Based in the San Francisco Bay Area. I'm happy to hear about data science roles and interesting problems in any domain.</p>
+                <div class="actions">
+                    <a class="btn primary" href="mailto:adhvaith.vijay@gmail.com">adhvaith.vijay@gmail.com</a>
+                    <a class="btn" href="https://calendly.com/adhvaith-vijay" target="_blank" rel="noopener">Book a call</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>© 2026 Adhvaith Vijay</footer>
+
+</body>
+
+</html>
